@@ -114,14 +114,13 @@ DROP TABLE IF EXISTS `Correcao`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Correcao` (
   `id_correcao` int(11) NOT NULL,
-  `id_solic` int(11) DEFAULT NULL,
   `data_correcao` datetime DEFAULT NULL,
   `id_status` int(11) DEFAULT NULL,
   `siape_admin` int(11) DEFAULT NULL,
   `resp_correcao` varchar(200) DEFAULT NULL,
   `horas_aceitas` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_correcao`),
-  KEY `FK` (`id_solic`,`id_status`,`siape_admin`)
+  KEY `FK` (`id_status`,`siape_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -248,12 +247,11 @@ CREATE TABLE `Solicitacao` (
   `id_atividade` int(11) DEFAULT NULL,
   `id_correcao` int(11) DEFAULT NULL,
   `data_solic` date DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
   `horas_info` int(11) DEFAULT NULL,
   `pdf` blob,
   PRIMARY KEY (`id_solicitacao`),
   KEY `FK` (`matricula`,`id_atividade`,`id_correcao`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,6 +260,7 @@ CREATE TABLE `Solicitacao` (
 
 LOCK TABLES `Solicitacao` WRITE;
 /*!40000 ALTER TABLE `Solicitacao` DISABLE KEYS */;
+INSERT INTO `Solicitacao` VALUES (6,0,2,NULL,'2018-11-15',50,NULL),(7,0,5,NULL,'2018-11-15',20,NULL),(8,0,5,NULL,'2018-11-15',20,NULL);
 /*!40000 ALTER TABLE `Solicitacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-15  0:56:19
+-- Dump completed on 2018-11-15 16:45:47
