@@ -4,9 +4,14 @@
 ## Instruções de uso:
 Requisitos: mysql, nodejs e npm instalados;
 
+### LEMBREM DE VERIFICAR A PASSWORD
+
 mysql deve estar com o database criado conforme o arquivo dbconnection.js
 
-# ASSIM QUE POSSIVEL VOU COLOCAR AQUI O DB, OU TENTAR UPAR PRO SERVIDOR.
+### Para carregar o mysql com o banco de dados usar o comando:
+	mysql < dump.sql
+
+
 Entrar no diretório e lançar o comando: 
 	npm start
 
