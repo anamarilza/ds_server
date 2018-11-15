@@ -12,7 +12,7 @@ mysql deve estar com o database criado conforme o arquivo dbconnection.js
 	mysql < dump.sql
 
 
-Entrar no diretório e lançar o comando: 
+### Entrar no diretório e lançar o comando: 
 	npm start
 
 Segue a lista de urls e parametros para cada tabela;
@@ -26,3 +26,17 @@ Segue a lista de urls e parametros para cada tabela;
 		Pegar todas Atividades de um Curriculo:
 		url: localhost:3000/Activities/getAllActivities/"id_curriculo"
 		obs: "id_curriculo" é um int;
+### SOLICITACAO:
+	GET:
+		Pegar todas as ativiades de um aluno:
+		url: localhost:3000/Requests/getAllStudentRequests/"matricula"
+		obs: "matricula" é um int;
+		
+	POST: 
+		Enviar uma solicitação para o bd;
+		url: localhost:3000/Requests/addNewRequest/
+		Colocar no body utilizando o padrão x-www-form-urlenconded os seguintes parametros:
+			- matricula; // matricula do aluno 
+			- id_atividade; // id da atividade que o aluno informou 
+			- horas_info; // número de horas informadas pelo aluno
+			
