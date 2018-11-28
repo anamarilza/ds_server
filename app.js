@@ -7,8 +7,11 @@ var bodyParser = require('body-parser');
 var cors=require('cors');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
 var Activities=require('./routes/Activities');
 var Requests = require('./routes/Requests')
+var Questions = require('./routes/Questions')
+
 var app = express();
 
 // view engine setup
@@ -26,8 +29,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
 app.use('/Activities', Activities);
 app.use('/Requests', Requests)
+app.use('/Questions', Questions)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
