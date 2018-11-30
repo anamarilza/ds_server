@@ -3,6 +3,7 @@ var router = express.Router();
 var Request=require('../models/Request');
 const uuidv4 = require('uuid/v4');
 const multer = require('multer');
+const path = require('path');
 var file_id = uuidv4();
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -29,6 +30,11 @@ router.get('/getAllStudentRequests/:matricula',function(req,res,next){
     }
  });
 
+router.get('/getRequestFileById/:file_id', function(req, res, next){
+    if(req.params.file_id){
+        res.sendFile(path.join(__dirname, '../uploads', req.params.file_id));
+    }
+});
   // POST /upload for single file upload
   /* ===== Make sure that file name matches the name attribute in your html ===== */
   router.post('/addNewRequest', upload.single('pdf'), (req, res, next) => {

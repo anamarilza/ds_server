@@ -28,9 +28,13 @@ Segue a lista de urls e parametros para cada tabela;
 		obs: "id_curriculo" é um int;
 ### SOLICITACAO:
 	GET:
-		Pegar todas as ativiades de um aluno:
+		Pegar todas as solicitações de um aluno:
 		url: localhost:3000/Requests/getAllStudentRequests/"matricula"
 		obs: "matricula" é um int;
+
+		Pegar o arquivo enviado na solicitação:
+		url: localhost:3000/Requests/getRequestFileById/"pdf"
+		obs: "pdf" é uma string que identifica o arquivo;
 
 	POST:
 		Enviar uma solicitação para o bd;
@@ -39,7 +43,7 @@ Segue a lista de urls e parametros para cada tabela;
 			- matricula; // matricula do aluno
 			- id_atividade; // id da atividade que o aluno informou
 			- horas_info; // número de horas informadas pelo aluno
-			- pdf // arquivo pdf 
+			- pdf // arquivo pdf
 ### FAQ:
 	GET:
 		Pegar todas as Duvidas de um curriculo:
