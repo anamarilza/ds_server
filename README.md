@@ -8,8 +8,8 @@ Requisitos: mysql, nodejs e npm instalados;
 ### METODOS POST DEVEM SER UTILIZADOS NO FORMATO FORM-DATA
 mysql deve estar com o database criado conforme o arquivo dbconnection.js
 
-### Para carregar o mysql com o banco de dados usar o comando:
-	mysql < dump.sql
+### Para carregar o mysql com o banco de dados usar o comando (o database vazio deve existir no mysql):
+	mysql -u root -p sistemaHoras < dump.sql
 
 
 ### Entrar no diretório e lançar o comando:
