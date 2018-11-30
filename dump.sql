@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `sistemaHoras`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `sistemaHoras` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `sistemaHoras`;
-
---
 -- Table structure for table `Aluno`
 --
 
@@ -192,13 +184,14 @@ DROP TABLE IF EXISTS `Duvida`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Duvida` (
-  `id_perg` int(11) NOT NULL,
-  `id_faq` int(11) DEFAULT NULL,
+  `id_perg` int(11) NOT NULL AUTO_INCREMENT,
   `perg_duv` varchar(200) DEFAULT NULL,
   `resp_duv` varchar(200) DEFAULT NULL,
+  `id_curriculo` int(11) NOT NULL,
   PRIMARY KEY (`id_perg`),
-  KEY `FK` (`id_faq`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `id_curriculo` (`id_curriculo`),
+  CONSTRAINT `Duvida_ibfk_1` FOREIGN KEY (`id_curriculo`) REFERENCES `Curriculo` (`id_curriculo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,31 +200,8 @@ CREATE TABLE `Duvida` (
 
 LOCK TABLES `Duvida` WRITE;
 /*!40000 ALTER TABLE `Duvida` DISABLE KEYS */;
+INSERT INTO `Duvida` VALUES (5,'\"Cursos de Linguas contam como horas de Ensino?\"','\"Apenas os cursos que são oferecidos pela UFPel, fora isso estas horas poderão apenas ser aproveitadas para horas livres\"',0),(6,'\"Qual o minimo de horas necessárias para me formar?\"','\"120 horas em 2 dos 3 eixos mais horas livres\"',0),(7,'\"Hello world\"','\"Bye\"',0),(8,'\"Hello world\"','\"eita\"',0);
 /*!40000 ALTER TABLE `Duvida` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `FAQ`
---
-
-DROP TABLE IF EXISTS `FAQ`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `FAQ` (
-  `id_faq` int(11) NOT NULL,
-  `id_curso` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_faq`),
-  KEY `FK` (`id_curso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `FAQ`
---
-
-LOCK TABLES `FAQ` WRITE;
-/*!40000 ALTER TABLE `FAQ` DISABLE KEYS */;
-/*!40000 ALTER TABLE `FAQ` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -248,10 +218,10 @@ CREATE TABLE `Solicitacao` (
   `id_correcao` int(11) DEFAULT NULL,
   `data_solic` date DEFAULT NULL,
   `horas_info` int(11) DEFAULT NULL,
-  `pdf` blob,
+  `pdf` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_solicitacao`),
   KEY `FK` (`matricula`,`id_atividade`,`id_correcao`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +230,7 @@ CREATE TABLE `Solicitacao` (
 
 LOCK TABLES `Solicitacao` WRITE;
 /*!40000 ALTER TABLE `Solicitacao` DISABLE KEYS */;
-INSERT INTO `Solicitacao` VALUES (6,0,2,NULL,'2018-11-15',50,NULL),(7,0,5,NULL,'2018-11-15',20,NULL),(8,0,5,NULL,'2018-11-15',20,NULL);
+INSERT INTO `Solicitacao` VALUES (30,0,13,NULL,'2018-11-29',400,'c56a25c2-db15-4313-a569-276343ac19e6.pdf'),(31,0,13,NULL,'2018-11-29',400,'b86e3f9d-eb34-4c13-9510-3744b3cb1e40.pdf');
 /*!40000 ALTER TABLE `Solicitacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-15 16:45:47
+-- Dump completed on 2018-11-29 23:26:03
