@@ -5,7 +5,7 @@
 Requisitos: mysql, nodejs e npm instalados;
 
 ### LEMBREM DE VERIFICAR A PASSWORD
-
+### METODOS POST DEVEM SER UTILIZADOS NO FORMATO FORM-DATA
 mysql deve estar com o database criado conforme o arquivo dbconnection.js
 
 ### Para carregar o mysql com o banco de dados usar o comando:
@@ -39,6 +39,7 @@ Segue a lista de urls e parametros para cada tabela;
 			- matricula; // matricula do aluno
 			- id_atividade; // id da atividade que o aluno informou
 			- horas_info; // número de horas informadas pelo aluno
+			- pdf // arquivo pdf 
 ### FAQ:
 	GET:
 		Pegar todas as Duvidas de um curriculo:

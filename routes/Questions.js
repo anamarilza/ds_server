@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Question= require('../models/Question');
+const multer = require('multer');
+var upload = multer()
 
 // ? means there is a optional argument
 //GET METHODS
@@ -30,7 +32,7 @@ router.get('/getQuestionById/:id_perg',function(req,res,next){
      }
   });
 
-router.post('/addNewQuestion',function(req,res,next){
+router.post('/addNewQuestion', upload.none(), (req, res, next) => {
     Question.addNewQuestion(req.body,function(err,count){
         if(err){
             res.json(err);

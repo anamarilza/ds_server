@@ -7,15 +7,15 @@ var Request={
       "and Aluno.matricula = Solicitacao.matricula", matricula, callback);
     },
     //POSTS
-    addNewRequest:function(Request, callback){
+    addNewRequest:function(Request, pdf_id,callback){
       // console.log("Req %s", Request.matricula);
       // console.log("Req %s", Request.id_atividade);
       // console.log("Req %s", Request.data_solic);
       // console.log("Req %s", Request.horas_info);
 
-      return db.query("Insert into Solicitacao (matricula, id_atividade, data_solic, horas_info) "+
-      "values(?,?, NOW(),?)",
-      [Request.matricula, Request.id_atividade, Request.horas_info],callback);
+      return db.query("Insert into Solicitacao (matricula, id_atividade, data_solic, horas_info, pdf) "+
+      "values(?,?, NOW(),?, ?)",
+      [Request.matricula, Request.id_atividade, Request.horas_info, pdf_id],callback);
     }
 
     // ADMIN
