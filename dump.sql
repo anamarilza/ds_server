@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `Admin`
+--
+
+DROP TABLE IF EXISTS `Admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Admin` (
+  `siape_admin` int(11) NOT NULL,
+  `nome_admin` varchar(100) DEFAULT NULL,
+  `senha_admin` varchar(200) DEFAULT NULL,
+  `cpf_admin` int(11) DEFAULT NULL,
+  PRIMARY KEY (`siape_admin`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Admin`
+--
+
+LOCK TABLES `Admin` WRITE;
+/*!40000 ALTER TABLE `Admin` DISABLE KEYS */;
+INSERT INTO `Admin` VALUES (0,'Ana','123',12352303);
+/*!40000 ALTER TABLE `Admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Aluno`
 --
 
@@ -26,7 +52,7 @@ CREATE TABLE `Aluno` (
   `matricula` int(11) NOT NULL,
   `nome_aluno` varchar(100) DEFAULT NULL,
   `cpf_aluno` varchar(11) DEFAULT NULL,
-  `senha_aluno` varchar(20) DEFAULT NULL,
+  `senha_aluno` varchar(100) DEFAULT NULL,
   `id_curriculo` int(11) DEFAULT NULL,
   PRIMARY KEY (`matricula`),
   KEY `FK` (`id_curriculo`)
@@ -105,15 +131,17 @@ DROP TABLE IF EXISTS `Correcao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Correcao` (
-  `id_correcao` int(11) NOT NULL,
+  `id_correcao` int(11) NOT NULL AUTO_INCREMENT,
   `data_correcao` datetime DEFAULT NULL,
-  `id_status` int(11) DEFAULT NULL,
   `siape_admin` int(11) DEFAULT NULL,
   `resp_correcao` varchar(200) DEFAULT NULL,
   `horas_aceitas` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `id_solicitacao` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_correcao`),
-  KEY `FK` (`id_status`,`siape_admin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `FK` (`siape_admin`),
+  KEY `id_solicitacao` (`id_solicitacao`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +150,7 @@ CREATE TABLE `Correcao` (
 
 LOCK TABLES `Correcao` WRITE;
 /*!40000 ALTER TABLE `Correcao` DISABLE KEYS */;
+INSERT INTO `Correcao` VALUES (2,'2018-12-02 15:49:02',0,'TUDO OK, aceitei 100 hrs',100,1,30);
 /*!40000 ALTER TABLE `Correcao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,12 +244,14 @@ CREATE TABLE `Solicitacao` (
   `id_solicitacao` int(11) NOT NULL AUTO_INCREMENT,
   `matricula` int(11) DEFAULT NULL,
   `id_atividade` int(11) DEFAULT NULL,
-  `id_correcao` int(11) DEFAULT NULL,
   `data_solic` date DEFAULT NULL,
   `horas_info` int(11) DEFAULT NULL,
   `pdf` varchar(200) DEFAULT NULL,
+  `id_correcao` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_solicitacao`),
-  KEY `FK` (`matricula`,`id_atividade`,`id_correcao`)
+  KEY `FK` (`matricula`,`id_atividade`),
+  KEY `id_correcao` (`id_correcao`),
+  CONSTRAINT `id_correcao` FOREIGN KEY (`id_correcao`) REFERENCES `Correcao` (`id_correcao`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -230,32 +261,39 @@ CREATE TABLE `Solicitacao` (
 
 LOCK TABLES `Solicitacao` WRITE;
 /*!40000 ALTER TABLE `Solicitacao` DISABLE KEYS */;
-INSERT INTO `Solicitacao` VALUES (30,0,13,NULL,'2018-11-29',400,'c56a25c2-db15-4313-a569-276343ac19e6.pdf'),(31,0,13,NULL,'2018-11-29',400,'b86e3f9d-eb34-4c13-9510-3744b3cb1e40.pdf');
+INSERT INTO `Solicitacao` VALUES (30,0,13,'2018-11-29',400,'c56a25c2-db15-4313-a569-276343ac19e6.pdf',2),(31,0,13,'2018-11-29',400,'b86e3f9d-eb34-4c13-9510-3744b3cb1e40.pdf',NULL);
 /*!40000 ALTER TABLE `Solicitacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Status`
+-- Table structure for table `Students`
 --
 
-DROP TABLE IF EXISTS `Status`;
+DROP TABLE IF EXISTS `Students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Status` (
-  `id_status` int(11) NOT NULL,
-  `desc_status` varchar(50) DEFAULT NULL,
-  `situacao` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `Students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `matricula` int(11) NOT NULL,
+  `nome_aluno` varchar(255) NOT NULL,
+  `cpf_aluno` varchar(255) NOT NULL,
+  `senha_aluno` varchar(255) NOT NULL,
+  `id_curriculo` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `matricula` (`matricula`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Status`
+-- Dumping data for table `Students`
 --
 
-LOCK TABLES `Status` WRITE;
-/*!40000 ALTER TABLE `Status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Status` ENABLE KEYS */;
+LOCK TABLES `Students` WRITE;
+/*!40000 ALTER TABLE `Students` DISABLE KEYS */;
+INSERT INTO `Students` VALUES (1,15201088,'plentz','03474286064','$2a$10$LkdCGs7o0vLuRqbmRyIXeO.kQotvGn5DHLEvUex1Yg.YwhY5NOnMW',0,'2018-12-02 13:31:09','2018-12-02 13:31:09');
+/*!40000 ALTER TABLE `Students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -267,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-29 23:26:03
+-- Dump completed on 2018-12-02 16:42:29

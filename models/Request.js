@@ -3,8 +3,13 @@ var Request={
     //STUDENT
     //GETS
     getAllStudentRequests:function(matricula, callback){
-      return db.query("Select * from Solicitacao, Aluno where Aluno.matricula = ?"+
-      "and Aluno.matricula = Solicitacao.matricula", matricula, callback);
+      return db.query(" select S.data_solic, S.horas_info, S.pdf, A.nome_atividade, C.status, C.data_correcao, C.horas_aceitas,"+
+      " C.resp_correcao, CA.nome_categoria from Solicitacao as S, Atividade as A, Correcao as C, Categoria as CA "+
+      "where S.id_atividade = A.id_atividade and S.id_correcao = C.id_correcao and S.matricula = 0 and"+
+      " CA.id_categoria = A.id_categoria union select  S.data_solic, S.horas_info, S.pdf, "+
+      "A.nome_atividade, null as status, null as data_correcao, null as horas_aceitas, "+
+      "null as resp_correcao, CA.nome_categoria from  Solicitacao as S, Atividade as A, Categoria as CA where A.id_atividade = S.id_atividade"+
+      " and S.id_correcao is null and S.matricula = 0 and CA.id_categoria = A.id_categoria", [matricula, matricula], callback);
     },
     //POSTS
     addNewRequest:function(Request, pdf_id,callback){

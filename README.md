@@ -26,11 +26,13 @@ Segue a lista de urls e parametros para cada tabela;
 		Pegar todas Atividades de um Curriculo:
 		url: localhost:3000/Activities/getAllActivities/"id_curriculo"
 		obs: "id_curriculo" é um int;
+
 ### SOLICITACAO:
 	GET:
 		Pegar todas as solicitações de um aluno:
 		url: localhost:3000/Requests/getAllStudentRequests/"matricula"
 		obs: "matricula" é um int;
+		RETORNA: data_solic, categoria, horas_info, pdf, nome_atividade, status, data_correcao, horas_aceitas e resp_correcao
 
 		Pegar o arquivo enviado na solicitação:
 		url: localhost:3000/Requests/getRequestFileById/"pdf"
