@@ -16,6 +16,36 @@ mysql deve estar com o database criado conforme o arquivo dbconnection.js
 	npm start
 
 Segue a lista de urls e parametros para cada tabela;
+
+### ALUNO:
+		GET:
+			Pegar todos os Alunos de um Curso pelo nome do curso:
+			url: localhost:3000/Students/getAllStudentsFromCourse/"Nome do curso"
+			Exemplo: localhost:3000/Students/getAllStudentsFromCourse/Ciência da Computação
+
+			Pegar todos os Alunos de um Curso pelo id do curso:
+			url: localhost:3000/Students/getAllStudentsFromCourse/"id_curso"
+			Exemplo: localhost:3000/Students/getAllStudentsFromCourseId/0
+			obs: "id_curso" é um int;
+
+			Busca o aluno pela matricula:
+			url: localhost:3000/Students/getStudentByMatricula/"matricula"
+			Exemplo: localhost:3000/Students/getStudentByMatricula/1520xxxx
+
+			Busca o aluno pelo cpf:
+			url: localhost:3000/Students/getStudentByMatricula/"cpf"
+
+		POST:
+			Enviar um novo aluno para o bd;
+			url: localhost:3000/Students/addNewStudent/
+			Colocar no body utilizando o padrão form-data os seguintes parametros:
+				- matricula; // matricula do aluno
+				- id_curriculo; // id do curriculo que o aluno está cadastrado
+				- nome_aluno;
+				- email;
+				- senha_aluno;
+				- cpf_aluno;
+				
 ### ATIVIDADE:
 
 	 GET:
@@ -41,7 +71,7 @@ Segue a lista de urls e parametros para cada tabela;
 	POST:
 		Enviar uma solicitação para o bd;
 		url: localhost:3000/Requests/addNewRequest/
-		Colocar no body utilizando o padrão x-www-form-urlenconded os seguintes parametros:
+		Colocar no body utilizando o padrão form-data os seguintes parametros:
 			- matricula; // matricula do aluno
 			- id_atividade; // id da atividade que o aluno informou
 			- horas_info; // número de horas informadas pelo aluno
@@ -58,7 +88,7 @@ Segue a lista de urls e parametros para cada tabela;
 	POST:
 		Enviar uma nova Duvida para o bd;
 		url: localhost:3000/Questions/addNewQuestion/
-		Colocar no body utilizando o padrão x-www-form-urlenconded os seguintes parametros:
+		Colocar no body utilizando o padrão form-data os seguintes parametros:
 			- id_curriculo; // id do curriculo do curso do aluno
 			- perg_duv; // pergunta
 			- resp_duv; // resposta
