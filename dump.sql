@@ -54,6 +54,7 @@ CREATE TABLE `Aluno` (
   `cpf_aluno` varchar(11) DEFAULT NULL,
   `senha_aluno` varchar(100) DEFAULT NULL,
   `id_curriculo` int(11) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`matricula`),
   KEY `FK` (`id_curriculo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -65,7 +66,7 @@ CREATE TABLE `Aluno` (
 
 LOCK TABLES `Aluno` WRITE;
 /*!40000 ALTER TABLE `Aluno` DISABLE KEYS */;
-INSERT INTO `Aluno` VALUES (0,'João Nerd','00000000000','helloworld',0);
+INSERT INTO `Aluno` VALUES (0,'João Nerd','00000000000','helloworld',0,'xxxx@inf.ufpel.edu.br'),(1,'afferson','0000001','012912',0,'troxa@inf'),(15201088,'Vítor Resing Plentz','03474286064','12345',0,'xxxx@inf.ufpel.edu.br');
 /*!40000 ALTER TABLE `Aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,6 +167,7 @@ CREATE TABLE `Curriculo` (
   `id_curso` int(11) DEFAULT NULL,
   `horas_comp_min` int(11) DEFAULT NULL,
   `horas_liv_min` int(11) DEFAULT NULL,
+  `nome_curriculo` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_curriculo`),
   KEY `FK` (`id_curso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -177,7 +179,7 @@ CREATE TABLE `Curriculo` (
 
 LOCK TABLES `Curriculo` WRITE;
 /*!40000 ALTER TABLE `Curriculo` DISABLE KEYS */;
-INSERT INTO `Curriculo` VALUES (0,0,120,100);
+INSERT INTO `Curriculo` VALUES (0,0,120,100,'2015');
 /*!40000 ALTER TABLE `Curriculo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 16:42:29
+-- Dump completed on 2018-12-02 21:25:36
