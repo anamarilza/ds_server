@@ -9,9 +9,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var Activities=require('./routes/Activities');
-var Requests = require('./routes/Requests')
-var Questions = require('./routes/Questions')
-var Students = require('./routes/Students')
+var Requests = require('./routes/Requests');
+var Questions = require('./routes/Questions');
+var Students = require('./routes/Students');
+var Reviews = require('./routes/Reviews');
 
 var app = express();
 
@@ -32,10 +33,10 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.use('/Activities', Activities);
-app.use('/Requests', Requests)
-app.use('/Questions', Questions)
-app.use('/Students', Students)
-
+app.use('/Requests', Requests);
+app.use('/Questions', Questions);
+app.use('/Students', Students);
+app.use('/Reviews', Reviews);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
