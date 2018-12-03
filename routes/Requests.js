@@ -30,6 +30,16 @@ router.get('/getAllStudentRequests/:matricula',function(req,res,next){
     }
  });
 
+ router.get('/getAllRequests',function(req,res,next){    
+     Request.getAllRequests(function(err,rows){ //get a specific task
+         if(err){
+             res.json(err);
+         } else {
+             res.json(rows);
+         }
+     });
+
+  });
 router.get('/getRequestFileById/:file_id', function(req, res, next){
     if(req.params.file_id){
         res.sendFile(path.join(__dirname, '../uploads', req.params.file_id));

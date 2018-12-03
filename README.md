@@ -45,7 +45,7 @@ Segue a lista de urls e parametros para cada tabela;
 				- email;
 				- senha_aluno;
 				- cpf_aluno;
-				
+
 ### ATIVIDADE:
 
 	 GET:
@@ -59,6 +59,11 @@ Segue a lista de urls e parametros para cada tabela;
 
 ### SOLICITACAO:
 	GET:
+
+		Pegar todas as solicitações de todos alunos:
+		url: localhost:3000/Requests/getAllRequests
+		RETORNA: nome_aluno, matricula, data_solic, categoria, horas_info, pdf, nome_atividade, status, data_correcao, horas_aceitas e resp_correcao
+
 		Pegar todas as solicitações de um aluno:
 		url: localhost:3000/Requests/getAllStudentRequests/"matricula"
 		obs: "matricula" é um int;
@@ -92,3 +97,5 @@ Segue a lista de urls e parametros para cada tabela;
 			- id_curriculo; // id do curriculo do curso do aluno
 			- perg_duv; // pergunta
 			- resp_duv; // resposta
+### Correcao:
+	POST:
