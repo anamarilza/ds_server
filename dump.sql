@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `Admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Admin` (
-  `siape_admin` int(11) NOT NULL,
+  `siape_admin` varchar(20) NOT NULL,
   `nome_admin` varchar(100) DEFAULT NULL,
   `senha_admin` varchar(200) DEFAULT NULL,
   `cpf_admin` int(11) DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `Admin` (
 
 LOCK TABLES `Admin` WRITE;
 /*!40000 ALTER TABLE `Admin` DISABLE KEYS */;
-INSERT INTO `Admin` VALUES (0,'Ana','123',12352303);
+INSERT INTO `Admin` VALUES ('0','Ana','123',12352303);
 /*!40000 ALTER TABLE `Admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,9 +140,9 @@ CREATE TABLE `Correcao` (
   `status` tinyint(1) DEFAULT NULL,
   `id_solicitacao` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_correcao`),
-  KEY `FK` (`siape_admin`),
-  KEY `id_solicitacao` (`id_solicitacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `id_solicitacao` (`id_solicitacao`),
+  KEY `FK` (`siape_admin`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `Correcao` (
 
 LOCK TABLES `Correcao` WRITE;
 /*!40000 ALTER TABLE `Correcao` DISABLE KEYS */;
-INSERT INTO `Correcao` VALUES (2,'2018-12-02 15:49:02',0,'TUDO OK, aceitei 100 hrs',100,1,30);
+INSERT INTO `Correcao` VALUES (2,'2018-12-02 15:49:02',0,'TUDO OK, aceitei 100 hrs',100,1,31),(21,'2018-12-02 23:15:34',0,'\"Aceitarei só 10\"',10,0,30);
 /*!40000 ALTER TABLE `Correcao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,7 +263,7 @@ CREATE TABLE `Solicitacao` (
 
 LOCK TABLES `Solicitacao` WRITE;
 /*!40000 ALTER TABLE `Solicitacao` DISABLE KEYS */;
-INSERT INTO `Solicitacao` VALUES (30,0,13,'2018-11-29',400,'c56a25c2-db15-4313-a569-276343ac19e6.pdf',2),(31,0,13,'2018-11-29',400,'b86e3f9d-eb34-4c13-9510-3744b3cb1e40.pdf',NULL);
+INSERT INTO `Solicitacao` VALUES (30,0,13,'2018-11-29',400,'c56a25c2-db15-4313-a569-276343ac19e6.pdf',21),(31,0,13,'2018-11-29',400,'b86e3f9d-eb34-4c13-9510-3744b3cb1e40.pdf',2);
 /*!40000 ALTER TABLE `Solicitacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 21:25:36
+-- Dump completed on 2018-12-02 23:16:50
