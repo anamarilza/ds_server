@@ -4,11 +4,11 @@ var Request={
     //GETS
     getAllStudentRequests:function(matricula, callback){
       return db.query(" select AL.nome_aluno, S.data_solic, S.horas_info, S.pdf, A.nome_atividade, C.status, C.data_correcao, C.horas_aceitas,"+
-      " C.resp_correcao, CA.nome_categoria from Solicitacao as S, Atividade as A, Correcao as C, Categoria as CA , Aluno AL"+
+      " C.resp_correcao, CA.nome_categoria from Solicitacao as S, Atividade as A, Correcao as C, Categoria as CA , Aluno as AL "+
       "where S.id_atividade = A.id_atividade and S.id_correcao = C.id_correcao and S.matricula = ? and"+
       " CA.id_categoria = A.id_categoria and S.matricula = AL.matricula union select AL.nome_aluno, S.data_solic, S.horas_info, S.pdf, "+
       "A.nome_atividade, null as status, null as data_correcao, null as horas_aceitas, "+
-      "null as resp_correcao, CA.nome_categoria from  Aluno AL, Solicitacao as S, Atividade as A, Categoria as CA where A.id_atividade = S.id_atividade"+
+      "null as resp_correcao, CA.nome_categoria from  Aluno as AL, Solicitacao as S, Atividade as A, Categoria as CA where A.id_atividade = S.id_atividade"+
       " and S.id_correcao is null and S.matricula = ? and CA.id_categoria = A.id_categoria and AL.matricula = S.matricula", [matricula, matricula], callback);
     },
 
