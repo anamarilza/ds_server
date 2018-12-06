@@ -52,6 +52,14 @@ Segue a lista de urls e parametros para cada tabela;
 		Pegar uma Atividade pelo ID dela:
 		url: localhost:3000/Activities/getActivityById/"id_atividade"
 		obs: "id_atividade" é um int;
+		RETORNA:
+			- id_atividade, type: int;
+			- id_curriculo, type: int;
+			- nome_atividade, type: string;
+			- id_categoria, type: int;
+			- horas_fixo: bool; // DEFINE SE A ATIVIDADE POSSUI TEMPO FIXO DE HORAS, CASO SEJA VERDADE nro_horas_fixo DEVE SER ENVIADO PARA O BANCO QUANDO O ALUNO SUBMETER UMA ATIVIDADE DESSE TIPO
+			- max_horas: int; // MAXIMO DE HORAS POSSIVEIS NESSA ATIVIDADE
+			- nro_horas_fixo: int. // NRO DE HORAS FIXO 
 
 		Pegar todas Atividades de um Curriculo:
 		url: localhost:3000/Activities/getAllActivities/"id_curriculo"
@@ -62,25 +70,48 @@ Segue a lista de urls e parametros para cada tabela;
 
 		Pegar todas as solicitações de todos alunos:
 		url: localhost:3000/Requests/getAllRequests
-		RETORNA: nome_aluno, matricula, data_solic, categoria, horas_info, pdf, nome_atividade, status, data_correcao, horas_aceitas e resp_correcao
+		RETORNA:
+			- Aluno.nome_aluno, type: string;
+			- Aluno.matricula, type: int;
+			- Solicitacao.data_solic, type: Date;
+			- Categoria.nome_categoria, type: string;
+			- Solicitacao.horas_info, type: int;
+			- Solicitacao.pdf, type: string;
+			- Atividade.nome_atividade, type: string;
+			- Correcao.status, type: bool;
+			- Correcao.data_correcao, type: Date;
+			- Correcao.horas_aceitas, type: int;
+			- Correcao.resp_correcao, type: string.
 
 		Pegar todas as solicitações de um aluno:
 		url: localhost:3000/Requests/getAllStudentRequests/"matricula"
 		obs: "matricula" é um int;
-		RETORNA: data_solic, categoria, horas_info, pdf, nome_atividade, status, data_correcao, horas_aceitas e resp_correcao
+		RETORNA: 
+			- Aluno.nome_aluno, type: string;
+			- Solicitacao.data_solic, type: Date;
+			- Categoria.nome_categoria, type: string;
+			- Solicitacao.horas_info, type: int;
+			- Solicitacao.pdf, type: string;
+			- Atividade.nome_atividade, type: string;
+			- Correcao.status, type: bool;
+			- Correcao.data_correcao, type: Date;
+			- Correcao.horas_aceitas, type: int;
+			- Correcao.resp_correcao, type: string.
+
 
 		Pegar o arquivo enviado na solicitação:
 		url: localhost:3000/Requests/getRequestFileById/"pdf"
 		obs: "pdf" é uma string que identifica o arquivo;
+		Retorna o arquivo File.
 
 	POST:
 		Enviar uma solicitação para o bd;
 		url: localhost:3000/Requests/addNewRequest/
 		Colocar no body utilizando o padrão form-data os seguintes parametros:
-			- matricula; // matricula do aluno
-			- id_atividade; // id da atividade que o aluno informou
-			- horas_info; // número de horas informadas pelo aluno
-			- pdf // arquivo pdf
+			- key: matricula, type: int; // matricula do aluno
+			- key: id_atividade, type: int; // id da atividade que o aluno informou
+			- key: horas_info, type: int; // número de horas informadas pelo aluno
+			- key: pdf , type: File // arquivo pdf
 ### FAQ:
 	GET:
 		Pegar todas as Duvidas de um curriculo:
@@ -94,8 +125,16 @@ Segue a lista de urls e parametros para cada tabela;
 		Enviar uma nova Duvida para o bd;
 		url: localhost:3000/Questions/addNewQuestion/
 		Colocar no body utilizando o padrão form-data os seguintes parametros:
-			- id_curriculo; // id do curriculo do curso do aluno
-			- perg_duv; // pergunta
-			- resp_duv; // resposta
+			- key: id_curriculo, type: int; // id do curriculo do curso do aluno
+			- key: perg_duv, type: string; // pergunta
+			- key: resp_duv, type: string; // resposta
 ### Correcao:
 	POST:
+		Enviar uma nova Correção:
+		url: localhost:3000/Reviews/addNewReview/
+		Colocar no body utilizando o padrão form-data os seguintes parametros:
+			- key :siape_admin, type: string; 
+			- key: resp_correcao, type: string; // pergunta
+			- key: horas_aceitas, type: int;
+			- key: status, type: bool; // true = aceito, false = rejeitado
+			- key: id_solicitacao, type: int // chave estrangeira que vem da solicitação
