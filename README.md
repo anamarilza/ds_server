@@ -59,7 +59,7 @@ Segue a lista de urls e parametros para cada tabela;
 			- id_categoria, type: int;
 			- horas_fixo: bool; // DEFINE SE A ATIVIDADE POSSUI TEMPO FIXO DE HORAS, CASO SEJA VERDADE nro_horas_fixo DEVE SER ENVIADO PARA O BANCO QUANDO O ALUNO SUBMETER UMA ATIVIDADE DESSE TIPO
 			- max_horas: int; // MAXIMO DE HORAS POSSIVEIS NESSA ATIVIDADE
-			- nro_horas_fixo: int. // NRO DE HORAS FIXO 
+			- nro_horas_fixo: int. // NRO DE HORAS FIXO
 
 		Pegar todas Atividades de um Curriculo:
 		url: localhost:3000/Activities/getAllActivities/"id_curriculo"
@@ -77,6 +77,8 @@ Segue a lista de urls e parametros para cada tabela;
 			- Categoria.nome_categoria, type: string;
 			- Solicitacao.horas_info, type: int;
 			- Solicitacao.pdf, type: string;
+			- Solicitacao.inicio, type: date;
+			- Solicitacao.fim, type:date;
 			- Atividade.nome_atividade, type: string;
 			- Correcao.status, type: bool;
 			- Correcao.data_correcao, type: Date;
@@ -86,12 +88,14 @@ Segue a lista de urls e parametros para cada tabela;
 		Pegar todas as solicitações de um aluno:
 		url: localhost:3000/Requests/getAllStudentRequests/"matricula"
 		obs: "matricula" é um int;
-		RETORNA: 
+		RETORNA:
 			- Aluno.nome_aluno, type: string;
 			- Solicitacao.data_solic, type: Date;
 			- Categoria.nome_categoria, type: string;
 			- Solicitacao.horas_info, type: int;
 			- Solicitacao.pdf, type: string;
+			- Solicitacao.inicio, type: date;
+			- Solicitacao.fim, type:date;
 			- Atividade.nome_atividade, type: string;
 			- Correcao.status, type: bool;
 			- Correcao.data_correcao, type: Date;
@@ -112,6 +116,8 @@ Segue a lista de urls e parametros para cada tabela;
 			- key: id_atividade, type: int; // id da atividade que o aluno informou
 			- key: horas_info, type: int; // número de horas informadas pelo aluno
 			- key: pdf , type: File // arquivo pdf
+			- key: inicio, type: date;
+			- key: fim, type: date.
 ### FAQ:
 	GET:
 		Pegar todas as Duvidas de um curriculo:
@@ -133,7 +139,7 @@ Segue a lista de urls e parametros para cada tabela;
 		Enviar uma nova Correção:
 		url: localhost:3000/Reviews/addNewReview/
 		Colocar no body utilizando o padrão form-data os seguintes parametros:
-			- key :siape_admin, type: string; 
+			- key :siape_admin, type: string;
 			- key: resp_correcao, type: string; // pergunta
 			- key: horas_aceitas, type: int;
 			- key: status, type: bool; // true = aceito, false = rejeitado
