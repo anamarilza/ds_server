@@ -142,7 +142,7 @@ CREATE TABLE `Correcao` (
   PRIMARY KEY (`id_correcao`),
   UNIQUE KEY `id_solicitacao` (`id_solicitacao`),
   KEY `FK` (`siape_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `Correcao` (
 
 LOCK TABLES `Correcao` WRITE;
 /*!40000 ALTER TABLE `Correcao` DISABLE KEYS */;
-INSERT INTO `Correcao` VALUES (2,'2018-12-02 15:49:02',0,'TUDO OK, aceitei 100 hrs',100,1,31),(21,'2018-12-02 23:15:34',0,'\"Aceitarei só 10\"',10,0,30);
+INSERT INTO `Correcao` VALUES (23,'2018-12-12 16:31:38',0,'\"Ta ruim\"',0,0,38);
 /*!40000 ALTER TABLE `Correcao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,11 +250,13 @@ CREATE TABLE `Solicitacao` (
   `horas_info` int(11) DEFAULT NULL,
   `pdf` varchar(200) DEFAULT NULL,
   `id_correcao` int(11) DEFAULT NULL,
+  `inicio` date DEFAULT NULL,
+  `fim` date DEFAULT NULL,
   PRIMARY KEY (`id_solicitacao`),
   KEY `FK` (`matricula`,`id_atividade`),
   KEY `id_correcao` (`id_correcao`),
   CONSTRAINT `id_correcao` FOREIGN KEY (`id_correcao`) REFERENCES `Correcao` (`id_correcao`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +265,7 @@ CREATE TABLE `Solicitacao` (
 
 LOCK TABLES `Solicitacao` WRITE;
 /*!40000 ALTER TABLE `Solicitacao` DISABLE KEYS */;
-INSERT INTO `Solicitacao` VALUES (30,0,13,'2018-11-29',400,'c56a25c2-db15-4313-a569-276343ac19e6.pdf',21),(31,0,13,'2018-11-29',400,'b86e3f9d-eb34-4c13-9510-3744b3cb1e40.pdf',2);
+INSERT INTO `Solicitacao` VALUES (38,0,18,'2018-12-12',20,'0b1751df-c8be-4fdc-b240-4749adff68ed.pdf',23,'2018-11-08','2018-11-12'),(39,0,13,'2018-12-12',22,'f5f3236b-9d62-4c60-b996-26b06ef59582.pdf',NULL,'2018-11-08','2018-11-12');
 /*!40000 ALTER TABLE `Solicitacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 23:37:40
+-- Dump completed on 2018-12-12 16:36:08
