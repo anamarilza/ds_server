@@ -30,7 +30,7 @@ router.get('/getAllStudentRequests/:matricula',function(req,res,next){
     }
  });
 
- router.get('/getAllRequests',function(req,res,next){    
+ router.get('/getAllRequests',function(req,res,next){
      Request.getAllRequests(function(err,rows){ //get a specific task
          if(err){
              res.json(err);
@@ -52,7 +52,7 @@ router.get('/getRequestFileById/:file_id', function(req, res, next){
           Request.addNewRequest(req.body, file_id+".pdf", function(err,count){
               if(err){
                   res.json(err);
-                  console.log('No File Uploaded');
+                  console.log(err);
                   var filename = 'FILE NOT UPLOADED';
                   var uploadStatus = 'File Upload Failed';
               } else {
